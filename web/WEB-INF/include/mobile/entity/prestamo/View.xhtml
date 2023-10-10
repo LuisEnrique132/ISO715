@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PrestamoViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewPrestamoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PrestamoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PrestamoViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{prestamoController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPrestamoLabel_id}"/>
+                            <h:outputText value="#{prestamoController.selected.id}" title="#{myBundle.ViewPrestamoTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPrestamoLabel_idEstudiante}"/>
+                            <h:outputText value="#{prestamoController.selected.idEstudiante}" title="#{myBundle.ViewPrestamoTitle_idEstudiante}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPrestamoLabel_idLibro}"/>
+                            <h:outputText value="#{prestamoController.selected.idLibro}" title="#{myBundle.ViewPrestamoTitle_idLibro}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPrestamoLabel_fechaPrestamo}"/>
+                            <h:outputText value="#{prestamoController.selected.fechaPrestamo}" title="#{myBundle.ViewPrestamoTitle_fechaPrestamo}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPrestamoLabel_fechaDevolucion}"/>
+                            <h:outputText value="#{prestamoController.selected.fechaDevolucion}" title="#{myBundle.ViewPrestamoTitle_fechaDevolucion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPrestamoLabel_cantidad}"/>
+                            <h:outputText value="#{prestamoController.selected.cantidad}" title="#{myBundle.ViewPrestamoTitle_cantidad}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPrestamoLabel_observacion}"/>
+                            <h:outputText value="#{prestamoController.selected.observacion}" title="#{myBundle.ViewPrestamoTitle_observacion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewPrestamoLabel_estado}"/>
+                            <h:outputText value="#{prestamoController.selected.estado}" title="#{myBundle.ViewPrestamoTitle_estado}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

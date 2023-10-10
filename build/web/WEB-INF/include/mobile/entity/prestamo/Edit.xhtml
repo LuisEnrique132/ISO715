@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="PrestamoEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditPrestamoTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:PrestamoListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="PrestamoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{prestamoController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditPrestamoLabel_id}" for="id" />
+                            <h:outputText id="id" value="#{prestamoController.selected.id}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditPrestamoLabel_idEstudiante}" for="idEstudiante" />
+                            <p:inputText id="idEstudiante" value="#{prestamoController.selected.idEstudiante}" title="#{myBundle.EditPrestamoTitle_idEstudiante}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_idEstudiante}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditPrestamoLabel_idLibro}" for="idLibro" />
+                            <p:inputText id="idLibro" value="#{prestamoController.selected.idLibro}" title="#{myBundle.EditPrestamoTitle_idLibro}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_idLibro}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditPrestamoLabel_fechaPrestamo}" for="fechaPrestamo" />
+                            <p:calendar id="fechaPrestamo" pattern="MM/dd/yyyy" value="#{prestamoController.selected.fechaPrestamo}" title="#{myBundle.EditPrestamoTitle_fechaPrestamo}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_fechaPrestamo}" showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditPrestamoLabel_fechaDevolucion}" for="fechaDevolucion" />
+                            <p:calendar id="fechaDevolucion" pattern="MM/dd/yyyy" value="#{prestamoController.selected.fechaDevolucion}" title="#{myBundle.EditPrestamoTitle_fechaDevolucion}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_fechaDevolucion}" showOn="button"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditPrestamoLabel_cantidad}" for="cantidad" />
+                            <p:inputText id="cantidad" value="#{prestamoController.selected.cantidad}" title="#{myBundle.EditPrestamoTitle_cantidad}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_cantidad}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditPrestamoLabel_observacion}" for="observacion" />
+                            <p:inputTextarea rows="4" cols="30" id="observacion" value="#{prestamoController.selected.observacion}" title="#{myBundle.EditPrestamoTitle_observacion}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_observacion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditPrestamoLabel_estado}" for="estado" />
+                            <p:inputText id="estado" value="#{prestamoController.selected.estado}" title="#{myBundle.EditPrestamoTitle_estado}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_estado}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{prestamoController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:PrestamoListPage:PrestamoListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:PrestamoListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

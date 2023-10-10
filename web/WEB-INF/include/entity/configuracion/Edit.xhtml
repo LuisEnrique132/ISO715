@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="ConfiguracionEditDlg" widgetVar="ConfiguracionEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditConfiguracionTitle}" closeOnEscape="true">
+
+            <h:form id="ConfiguracionEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{configuracionController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditConfiguracionLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{configuracionController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditConfiguracionLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{configuracionController.selected.nombre}" title="#{myBundle.EditConfiguracionTitle_nombre}" required="true" requiredMessage="#{myBundle.EditConfiguracionRequiredMessage_nombre}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.EditConfiguracionLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{configuracionController.selected.telefono}" title="#{myBundle.EditConfiguracionTitle_telefono}" required="true" requiredMessage="#{myBundle.EditConfiguracionRequiredMessage_telefono}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.EditConfiguracionLabel_direccion}" for="direccion" />
+                        <p:inputTextarea rows="4" cols="30" id="direccion" value="#{configuracionController.selected.direccion}" title="#{myBundle.EditConfiguracionTitle_direccion}" required="true" requiredMessage="#{myBundle.EditConfiguracionRequiredMessage_direccion}"/>
+
+                        <p:outputLabel value="#{myBundle.EditConfiguracionLabel_correo}" for="correo" />
+                        <p:inputText id="correo" value="#{configuracionController.selected.correo}" title="#{myBundle.EditConfiguracionTitle_correo}" required="true" requiredMessage="#{myBundle.EditConfiguracionRequiredMessage_correo}" size="100" maxlength="100"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{configuracionController.save}" value="#{myBundle.Save}" update="display,:ConfiguracionListForm:datalist,:ConfiguracionListForm:ConfiguracionDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('ConfiguracionEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('ConfiguracionEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

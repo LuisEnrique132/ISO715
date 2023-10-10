@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="PrestamoEditDlg" widgetVar="PrestamoEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditPrestamoTitle}" closeOnEscape="true">
+
+            <h:form id="PrestamoEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{prestamoController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditPrestamoLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{prestamoController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditPrestamoLabel_idEstudiante}" for="idEstudiante" />
+                        <p:inputText id="idEstudiante" value="#{prestamoController.selected.idEstudiante}" title="#{myBundle.EditPrestamoTitle_idEstudiante}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_idEstudiante}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPrestamoLabel_idLibro}" for="idLibro" />
+                        <p:inputText id="idLibro" value="#{prestamoController.selected.idLibro}" title="#{myBundle.EditPrestamoTitle_idLibro}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_idLibro}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPrestamoLabel_fechaPrestamo}" for="fechaPrestamo" />
+                        <p:calendar id="fechaPrestamo" pattern="MM/dd/yyyy" value="#{prestamoController.selected.fechaPrestamo}" title="#{myBundle.EditPrestamoTitle_fechaPrestamo}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_fechaPrestamo}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditPrestamoLabel_fechaDevolucion}" for="fechaDevolucion" />
+                        <p:calendar id="fechaDevolucion" pattern="MM/dd/yyyy" value="#{prestamoController.selected.fechaDevolucion}" title="#{myBundle.EditPrestamoTitle_fechaDevolucion}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_fechaDevolucion}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.EditPrestamoLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{prestamoController.selected.cantidad}" title="#{myBundle.EditPrestamoTitle_cantidad}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_cantidad}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPrestamoLabel_observacion}" for="observacion" />
+                        <p:inputTextarea rows="4" cols="30" id="observacion" value="#{prestamoController.selected.observacion}" title="#{myBundle.EditPrestamoTitle_observacion}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_observacion}"/>
+
+                        <p:outputLabel value="#{myBundle.EditPrestamoLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{prestamoController.selected.estado}" title="#{myBundle.EditPrestamoTitle_estado}" required="true" requiredMessage="#{myBundle.EditPrestamoRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{prestamoController.save}" value="#{myBundle.Save}" update="display,:PrestamoListForm:datalist,:PrestamoListForm:PrestamoDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PrestamoEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PrestamoEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

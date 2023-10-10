@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="EstudianteEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditEstudianteTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:EstudianteListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="EstudianteEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{estudianteController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditEstudianteLabel_id}" for="id" />
+                            <h:outputText id="id" value="#{estudianteController.selected.id}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEstudianteLabel_codigo}" for="codigo" />
+                            <p:inputText id="codigo" value="#{estudianteController.selected.codigo}" title="#{myBundle.EditEstudianteTitle_codigo}" required="true" requiredMessage="#{myBundle.EditEstudianteRequiredMessage_codigo}" size="20" maxlength="20"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEstudianteLabel_dni}" for="dni" />
+                            <p:inputText id="dni" value="#{estudianteController.selected.dni}" title="#{myBundle.EditEstudianteTitle_dni}" required="true" requiredMessage="#{myBundle.EditEstudianteRequiredMessage_dni}" size="20" maxlength="20"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEstudianteLabel_nombre}" for="nombre" />
+                            <p:inputText id="nombre" value="#{estudianteController.selected.nombre}" title="#{myBundle.EditEstudianteTitle_nombre}" required="true" requiredMessage="#{myBundle.EditEstudianteRequiredMessage_nombre}" size="150" maxlength="150"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEstudianteLabel_carrera}" for="carrera" />
+                            <p:inputText id="carrera" value="#{estudianteController.selected.carrera}" title="#{myBundle.EditEstudianteTitle_carrera}" required="true" requiredMessage="#{myBundle.EditEstudianteRequiredMessage_carrera}" size="255" maxlength="255"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEstudianteLabel_direccion}" for="direccion" />
+                            <p:inputTextarea rows="4" cols="30" id="direccion" value="#{estudianteController.selected.direccion}" title="#{myBundle.EditEstudianteTitle_direccion}" required="true" requiredMessage="#{myBundle.EditEstudianteRequiredMessage_direccion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEstudianteLabel_telefono}" for="telefono" />
+                            <p:inputText id="telefono" value="#{estudianteController.selected.telefono}" title="#{myBundle.EditEstudianteTitle_telefono}" required="true" requiredMessage="#{myBundle.EditEstudianteRequiredMessage_telefono}" size="15" maxlength="15"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditEstudianteLabel_estado}" for="estado" />
+                            <p:inputText id="estado" value="#{estudianteController.selected.estado}" title="#{myBundle.EditEstudianteTitle_estado}" required="true" requiredMessage="#{myBundle.EditEstudianteRequiredMessage_estado}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{estudianteController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:EstudianteListPage:EstudianteListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:EstudianteListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

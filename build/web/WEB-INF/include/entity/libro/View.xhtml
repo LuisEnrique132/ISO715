@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LibroViewDlg" widgetVar="LibroViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewLibroTitle}" closeOnEscape="true">
+
+            <h:form id="LibroViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{libroController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_id}"/>
+                        <h:outputText value="#{libroController.selected.id}" title="#{myBundle.ViewLibroTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_titulo}"/>
+                        <h:outputText value="#{libroController.selected.titulo}" title="#{myBundle.ViewLibroTitle_titulo}"/>
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_cantidad}"/>
+                        <h:outputText value="#{libroController.selected.cantidad}" title="#{myBundle.ViewLibroTitle_cantidad}"/>
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_idAutor}"/>
+                        <h:outputText value="#{libroController.selected.idAutor}" title="#{myBundle.ViewLibroTitle_idAutor}"/>
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_idEditorial}"/>
+                        <h:outputText value="#{libroController.selected.idEditorial}" title="#{myBundle.ViewLibroTitle_idEditorial}"/>
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_anioEdicion}"/>
+                        <h:outputText value="#{libroController.selected.anioEdicion}" title="#{myBundle.ViewLibroTitle_anioEdicion}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_idMateria}"/>
+                        <h:outputText value="#{libroController.selected.idMateria}" title="#{myBundle.ViewLibroTitle_idMateria}"/>
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_numPagina}"/>
+                        <h:outputText value="#{libroController.selected.numPagina}" title="#{myBundle.ViewLibroTitle_numPagina}"/>
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_descripcion}"/>
+                        <h:outputText value="#{libroController.selected.descripcion}" title="#{myBundle.ViewLibroTitle_descripcion}"/>
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_imagen}"/>
+                        <h:outputText value="#{libroController.selected.imagen}" title="#{myBundle.ViewLibroTitle_imagen}"/>
+
+                        <h:outputText value="#{myBundle.ViewLibroLabel_estado}"/>
+                        <h:outputText value="#{libroController.selected.estado}" title="#{myBundle.ViewLibroTitle_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('LibroViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

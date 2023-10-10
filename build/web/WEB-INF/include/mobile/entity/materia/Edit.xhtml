@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="MateriaEditPage" lazy="true">
+        <pm:header title="#{myBundle.EditMateriaTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:MateriaListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="MateriaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{materiaController.selected != null}">
+
+                        <pm:field>
+                            <h:outputLabel value="#{myBundle.EditMateriaLabel_id}" for="id" />
+                            <h:outputText id="id" value="#{materiaController.selected.id}" />
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditMateriaLabel_materia}" for="materia" />
+                            <p:inputTextarea rows="4" cols="30" id="materia" value="#{materiaController.selected.materia}" title="#{myBundle.EditMateriaTitle_materia}" required="true" requiredMessage="#{myBundle.EditMateriaRequiredMessage_materia}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <p:outputLabel value="#{myBundle.EditMateriaLabel_estado}" for="estado" />
+                            <p:inputText id="estado" value="#{materiaController.selected.estado}" title="#{myBundle.EditMateriaTitle_estado}" required="true" requiredMessage="#{myBundle.EditMateriaRequiredMessage_estado}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                    <p:commandButton actionListener="#{materiaController.save}" value="#{myBundle.Save}" update="#{mobilePageController.updatableWidgets(component,'display,:MateriaListPage:MateriaListForm:datalist,:growl')}" action="#{mobilePageController.navigateWithHistory('pm:MateriaListPage')}"/>
+
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

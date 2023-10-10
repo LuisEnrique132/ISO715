@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="LibroViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewLibroTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:LibroListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="LibroViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{libroController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_id}"/>
+                            <h:outputText value="#{libroController.selected.id}" title="#{myBundle.ViewLibroTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_titulo}"/>
+                            <h:outputText value="#{libroController.selected.titulo}" title="#{myBundle.ViewLibroTitle_titulo}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_cantidad}"/>
+                            <h:outputText value="#{libroController.selected.cantidad}" title="#{myBundle.ViewLibroTitle_cantidad}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_idAutor}"/>
+                            <h:outputText value="#{libroController.selected.idAutor}" title="#{myBundle.ViewLibroTitle_idAutor}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_idEditorial}"/>
+                            <h:outputText value="#{libroController.selected.idEditorial}" title="#{myBundle.ViewLibroTitle_idEditorial}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_anioEdicion}"/>
+                            <h:outputText value="#{libroController.selected.anioEdicion}" title="#{myBundle.ViewLibroTitle_anioEdicion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_idMateria}"/>
+                            <h:outputText value="#{libroController.selected.idMateria}" title="#{myBundle.ViewLibroTitle_idMateria}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_numPagina}"/>
+                            <h:outputText value="#{libroController.selected.numPagina}" title="#{myBundle.ViewLibroTitle_numPagina}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_descripcion}"/>
+                            <h:outputText value="#{libroController.selected.descripcion}" title="#{myBundle.ViewLibroTitle_descripcion}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_imagen}"/>
+                            <h:outputText value="#{libroController.selected.imagen}" title="#{myBundle.ViewLibroTitle_imagen}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewLibroLabel_estado}"/>
+                            <h:outputText value="#{libroController.selected.estado}" title="#{myBundle.ViewLibroTitle_estado}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

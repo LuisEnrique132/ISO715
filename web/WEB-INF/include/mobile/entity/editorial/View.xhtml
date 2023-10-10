@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="EditorialViewPage" lazy="true">
+        <pm:header title="#{myBundle.ViewEditorialTitle}">
+            <h:form>
+                <p:commandButton styleClass="ui-btn-left ui-btn-inline" value="#{myBundle.Cancel}" icon="ui-icon-arrow-l" action="#{mobilePageController.navigateBackInHistory('pm:EditorialListPage')}"/>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="EditorialViewForm">
+
+                <h:panelGroup id="display">
+                    <p:outputPanel rendered="#{editorialController.selected != null}">
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewEditorialLabel_id}"/>
+                            <h:outputText value="#{editorialController.selected.id}" title="#{myBundle.ViewEditorialTitle_id}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewEditorialLabel_editorial}"/>
+                            <h:outputText value="#{editorialController.selected.editorial}" title="#{myBundle.ViewEditorialTitle_editorial}"/>
+                        </pm:field>
+
+                        <pm:field>
+                            <h:outputText value="#{myBundle.ViewEditorialLabel_estado}"/>
+                            <h:outputText value="#{editorialController.selected.estado}" title="#{myBundle.ViewEditorialTitle_estado}"/>
+                        </pm:field>
+                    </p:outputPanel>
+                </h:panelGroup>
+
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

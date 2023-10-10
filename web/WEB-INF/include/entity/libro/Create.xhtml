@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LibroCreateDlg" widgetVar="LibroCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateLibroTitle}" closeOnEscape="true">
+
+            <h:form id="LibroCreateForm">
+
+                <h:panelGroup id="display" rendered="#{libroController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateLibroLabel_titulo}" for="titulo" />
+                        <p:inputTextarea rows="4" cols="30" id="titulo" value="#{libroController.selected.titulo}" title="#{myBundle.CreateLibroTitle_titulo}" required="true" requiredMessage="#{myBundle.CreateLibroRequiredMessage_titulo}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateLibroLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{libroController.selected.cantidad}" title="#{myBundle.CreateLibroTitle_cantidad}" required="true" requiredMessage="#{myBundle.CreateLibroRequiredMessage_cantidad}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateLibroLabel_idAutor}" for="idAutor" />
+                        <p:inputText id="idAutor" value="#{libroController.selected.idAutor}" title="#{myBundle.CreateLibroTitle_idAutor}" required="true" requiredMessage="#{myBundle.CreateLibroRequiredMessage_idAutor}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateLibroLabel_idEditorial}" for="idEditorial" />
+                        <p:inputText id="idEditorial" value="#{libroController.selected.idEditorial}" title="#{myBundle.CreateLibroTitle_idEditorial}" required="true" requiredMessage="#{myBundle.CreateLibroRequiredMessage_idEditorial}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateLibroLabel_anioEdicion}" for="anioEdicion" />
+                        <p:calendar id="anioEdicion" pattern="MM/dd/yyyy" value="#{libroController.selected.anioEdicion}" title="#{myBundle.CreateLibroTitle_anioEdicion}" required="true" requiredMessage="#{myBundle.CreateLibroRequiredMessage_anioEdicion}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreateLibroLabel_idMateria}" for="idMateria" />
+                        <p:inputText id="idMateria" value="#{libroController.selected.idMateria}" title="#{myBundle.CreateLibroTitle_idMateria}" required="true" requiredMessage="#{myBundle.CreateLibroRequiredMessage_idMateria}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateLibroLabel_numPagina}" for="numPagina" />
+                        <p:inputText id="numPagina" value="#{libroController.selected.numPagina}" title="#{myBundle.CreateLibroTitle_numPagina}" required="true" requiredMessage="#{myBundle.CreateLibroRequiredMessage_numPagina}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateLibroLabel_descripcion}" for="descripcion" />
+                        <p:inputTextarea rows="4" cols="30" id="descripcion" value="#{libroController.selected.descripcion}" title="#{myBundle.CreateLibroTitle_descripcion}" required="true" requiredMessage="#{myBundle.CreateLibroRequiredMessage_descripcion}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateLibroLabel_imagen}" for="imagen" />
+                        <p:inputText id="imagen" value="#{libroController.selected.imagen}" title="#{myBundle.CreateLibroTitle_imagen}" required="true" requiredMessage="#{myBundle.CreateLibroRequiredMessage_imagen}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateLibroLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{libroController.selected.estado}" title="#{myBundle.CreateLibroTitle_estado}" required="true" requiredMessage="#{myBundle.CreateLibroRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{libroController.saveNew}" value="#{myBundle.Save}" update="display,:LibroListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('LibroCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('LibroCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

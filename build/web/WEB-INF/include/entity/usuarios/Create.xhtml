@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuariosCreateDlg" widgetVar="UsuariosCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateUsuariosTitle}" closeOnEscape="true">
+
+            <h:form id="UsuariosCreateForm">
+
+                <h:panelGroup id="display" rendered="#{usuariosController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateUsuariosLabel_usuario}" for="usuario" />
+                        <p:inputText id="usuario" value="#{usuariosController.selected.usuario}" title="#{myBundle.CreateUsuariosTitle_usuario}" required="true" requiredMessage="#{myBundle.CreateUsuariosRequiredMessage_usuario}" size="50" maxlength="50"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUsuariosLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{usuariosController.selected.nombre}" title="#{myBundle.CreateUsuariosTitle_nombre}" required="true" requiredMessage="#{myBundle.CreateUsuariosRequiredMessage_nombre}" size="200" maxlength="200"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUsuariosLabel_clave}" for="clave" />
+                        <p:inputText id="clave" value="#{usuariosController.selected.clave}" title="#{myBundle.CreateUsuariosTitle_clave}" required="true" requiredMessage="#{myBundle.CreateUsuariosRequiredMessage_clave}" size="100" maxlength="100"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUsuariosLabel_rol}" for="rol" />
+                        <p:inputText id="rol" value="#{usuariosController.selected.rol}" title="#{myBundle.CreateUsuariosTitle_rol}" required="true" requiredMessage="#{myBundle.CreateUsuariosRequiredMessage_rol}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateUsuariosLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{usuariosController.selected.estado}" title="#{myBundle.CreateUsuariosTitle_estado}" required="true" requiredMessage="#{myBundle.CreateUsuariosRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{usuariosController.saveNew}" value="#{myBundle.Save}" update="display,:UsuariosListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('UsuariosCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('UsuariosCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

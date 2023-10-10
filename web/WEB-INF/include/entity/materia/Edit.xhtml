@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog id="MateriaEditDlg" widgetVar="MateriaEditDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.EditMateriaTitle}" closeOnEscape="true">
+
+            <h:form id="MateriaEditForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid  columns="2" columnClasses="column" rendered="#{materiaController.selected != null}">
+
+
+                        <h:outputLabel value="#{myBundle.EditMateriaLabel_id}" for="id" />
+                        <h:outputText id="id" value="#{materiaController.selected.id}" />
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_materia}" for="materia" />
+                        <p:inputTextarea rows="4" cols="30" id="materia" value="#{materiaController.selected.materia}" title="#{myBundle.EditMateriaTitle_materia}" required="true" requiredMessage="#{myBundle.EditMateriaRequiredMessage_materia}"/>
+
+                        <p:outputLabel value="#{myBundle.EditMateriaLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{materiaController.selected.estado}" title="#{myBundle.EditMateriaTitle_estado}" required="true" requiredMessage="#{myBundle.EditMateriaRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{materiaController.save}" value="#{myBundle.Save}" update="display,:MateriaListForm:datalist,:MateriaListForm:MateriaDataTableContextMenu,:growl" oncomplete="handleSubmit(xhr,status,args,PF('MateriaEditDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmEditMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('MateriaEditDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

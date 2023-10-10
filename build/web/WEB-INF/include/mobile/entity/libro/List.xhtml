@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pm="http://primefaces.org/mobile">
+
+    <pm:page id="LibroListPage">
+        <pm:header title="#{myBundle.ListLibroTitle}">
+            <h:form>
+                <p:commandButton id="backButton"   styleClass="ui-btn-left  ui-btn-inline" icon="ui-icon-arrow-l" value="#{myBundle.Back}" action="#{mobilePageController.navigateBackInHistory('/mobile/index')}"/>
+                <p:commandButton id="createButton" styleClass="ui-btn-right ui-btn-inline" icon="ui-icon-plus"    value="#{myBundle.Create}" update=":LibroCreatePage:LibroCreateForm" actionListener="#{libroController.prepareCreate}" action="#{mobilePageController.navigateWithHistory('pm:LibroCreatePage')}">
+                    <f:actionListener binding="#{currentPageListener}"/>
+                </p:commandButton>
+            </h:form>
+        </pm:header>
+
+        <pm:content>
+
+            <h:form id="LibroListForm">
+
+                <p:dataList id="datalist"
+                            paginator="true"
+                            rows="10"
+                            rowsPerPageTemplate="10,20,30,40,50"
+                            pt:data-inset="true"
+                            value="#{libroController.items}"
+                            var="item">
+
+                    <f:facet name="header">
+                        <h:outputText value="#{myBundle.ListLibroTitle}"/>
+                    </f:facet>
+
+                    <p:commandLink update=":LibroEditPage:LibroEditForm" action="pm:LibroEditPage">
+                        <p>
+
+
+
+                            <h:outputText value="#{item.id}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.titulo}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.cantidad}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.idAutor}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.idEditorial}"/>
+
+
+
+                            ,&nbsp;
+                            <h:outputText value="#{item.anioEdicion}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+
+
+                            <ui:remove>
+                                ,&nbsp;
+                                <h:outputText value="#{item.idMateria}"/>
+                            </ui:remove>
+
+                            <ui:remove>
+                                ,&nbsp;
+                                <h:outputText value="#{item.numPagina}"/>
+                            </ui:remove>
+
+                            <ui:remove>
+                                ,&nbsp;
+                                <h:outputText value="#{item.descripcion}"/>
+                            </ui:remove>
+
+                            <ui:remove>
+                                ,&nbsp;
+                                <h:outputText value="#{item.imagen}"/>
+                            </ui:remove>
+
+                            <ui:remove>
+                                ,&nbsp;
+                                <h:outputText value="#{item.estado}"/>
+                            </ui:remove>
+                        </p>
+                        <f:setPropertyActionListener value="#{item}" target="#{libroController.selected}" />
+                    </p:commandLink>
+
+                    <f:facet name="footer">
+                        <h:outputText value="#{myBundle.ListLibroTitle}"/>
+                    </f:facet>
+
+                </p:dataList>
+            </h:form>
+
+        </pm:content>
+
+    </pm:page>
+
+</ui:composition>

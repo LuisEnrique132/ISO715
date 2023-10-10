@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EditorialViewDlg" widgetVar="EditorialViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewEditorialTitle}" closeOnEscape="true">
+
+            <h:form id="EditorialViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{editorialController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewEditorialLabel_id}"/>
+                        <h:outputText value="#{editorialController.selected.id}" title="#{myBundle.ViewEditorialTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewEditorialLabel_editorial}"/>
+                        <h:outputText value="#{editorialController.selected.editorial}" title="#{myBundle.ViewEditorialTitle_editorial}"/>
+
+                        <h:outputText value="#{myBundle.ViewEditorialLabel_estado}"/>
+                        <h:outputText value="#{editorialController.selected.estado}" title="#{myBundle.ViewEditorialTitle_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('EditorialViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

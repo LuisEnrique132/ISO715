@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EstudianteCreateDlg" widgetVar="EstudianteCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreateEstudianteTitle}" closeOnEscape="true">
+
+            <h:form id="EstudianteCreateForm">
+
+                <h:panelGroup id="display" rendered="#{estudianteController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreateEstudianteLabel_codigo}" for="codigo" />
+                        <p:inputText id="codigo" value="#{estudianteController.selected.codigo}" title="#{myBundle.CreateEstudianteTitle_codigo}" required="true" requiredMessage="#{myBundle.CreateEstudianteRequiredMessage_codigo}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEstudianteLabel_dni}" for="dni" />
+                        <p:inputText id="dni" value="#{estudianteController.selected.dni}" title="#{myBundle.CreateEstudianteTitle_dni}" required="true" requiredMessage="#{myBundle.CreateEstudianteRequiredMessage_dni}" size="20" maxlength="20"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEstudianteLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{estudianteController.selected.nombre}" title="#{myBundle.CreateEstudianteTitle_nombre}" required="true" requiredMessage="#{myBundle.CreateEstudianteRequiredMessage_nombre}" size="150" maxlength="150"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEstudianteLabel_carrera}" for="carrera" />
+                        <p:inputText id="carrera" value="#{estudianteController.selected.carrera}" title="#{myBundle.CreateEstudianteTitle_carrera}" required="true" requiredMessage="#{myBundle.CreateEstudianteRequiredMessage_carrera}" size="255" maxlength="255"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEstudianteLabel_direccion}" for="direccion" />
+                        <p:inputTextarea rows="4" cols="30" id="direccion" value="#{estudianteController.selected.direccion}" title="#{myBundle.CreateEstudianteTitle_direccion}" required="true" requiredMessage="#{myBundle.CreateEstudianteRequiredMessage_direccion}"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEstudianteLabel_telefono}" for="telefono" />
+                        <p:inputText id="telefono" value="#{estudianteController.selected.telefono}" title="#{myBundle.CreateEstudianteTitle_telefono}" required="true" requiredMessage="#{myBundle.CreateEstudianteRequiredMessage_telefono}" size="15" maxlength="15"/>
+
+                        <p:outputLabel value="#{myBundle.CreateEstudianteLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{estudianteController.selected.estado}" title="#{myBundle.CreateEstudianteTitle_estado}" required="true" requiredMessage="#{myBundle.CreateEstudianteRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{estudianteController.saveNew}" value="#{myBundle.Save}" update="display,:EstudianteListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('EstudianteCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('EstudianteCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

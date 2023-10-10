@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PrestamoCreateDlg" widgetVar="PrestamoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{myBundle.CreatePrestamoTitle}" closeOnEscape="true">
+
+            <h:form id="PrestamoCreateForm">
+
+                <h:panelGroup id="display" rendered="#{prestamoController.selected != null}">
+                    <p:panelGrid columns="2" columnClasses="column">
+
+                        <p:outputLabel value="#{myBundle.CreatePrestamoLabel_idEstudiante}" for="idEstudiante" />
+                        <p:inputText id="idEstudiante" value="#{prestamoController.selected.idEstudiante}" title="#{myBundle.CreatePrestamoTitle_idEstudiante}" required="true" requiredMessage="#{myBundle.CreatePrestamoRequiredMessage_idEstudiante}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePrestamoLabel_idLibro}" for="idLibro" />
+                        <p:inputText id="idLibro" value="#{prestamoController.selected.idLibro}" title="#{myBundle.CreatePrestamoTitle_idLibro}" required="true" requiredMessage="#{myBundle.CreatePrestamoRequiredMessage_idLibro}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePrestamoLabel_fechaPrestamo}" for="fechaPrestamo" />
+                        <p:calendar id="fechaPrestamo" pattern="MM/dd/yyyy" value="#{prestamoController.selected.fechaPrestamo}" title="#{myBundle.CreatePrestamoTitle_fechaPrestamo}" required="true" requiredMessage="#{myBundle.CreatePrestamoRequiredMessage_fechaPrestamo}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePrestamoLabel_fechaDevolucion}" for="fechaDevolucion" />
+                        <p:calendar id="fechaDevolucion" pattern="MM/dd/yyyy" value="#{prestamoController.selected.fechaDevolucion}" title="#{myBundle.CreatePrestamoTitle_fechaDevolucion}" required="true" requiredMessage="#{myBundle.CreatePrestamoRequiredMessage_fechaDevolucion}" showOn="button"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePrestamoLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{prestamoController.selected.cantidad}" title="#{myBundle.CreatePrestamoTitle_cantidad}" required="true" requiredMessage="#{myBundle.CreatePrestamoRequiredMessage_cantidad}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePrestamoLabel_observacion}" for="observacion" />
+                        <p:inputTextarea rows="4" cols="30" id="observacion" value="#{prestamoController.selected.observacion}" title="#{myBundle.CreatePrestamoTitle_observacion}" required="true" requiredMessage="#{myBundle.CreatePrestamoRequiredMessage_observacion}"/>
+
+                        <p:outputLabel value="#{myBundle.CreatePrestamoLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{prestamoController.selected.estado}" title="#{myBundle.CreatePrestamoTitle_estado}" required="true" requiredMessage="#{myBundle.CreatePrestamoRequiredMessage_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{prestamoController.saveNew}" value="#{myBundle.Save}" update="display,:PrestamoListForm:datalist,:growl" oncomplete="handleSubmit(xhr,status,args,PF('PrestamoCreateDialog'));">
+                        <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmCreateMessage}" icon="ui-icon-alert"/>
+                    </p:commandButton>
+
+                    <p:commandButton value="#{myBundle.Cancel}" oncomplete="PF('PrestamoCreateDialog').hide()" update="display" process="@this" immediate="true" resetValues="true"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

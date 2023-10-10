@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ConfiguracionViewDlg" widgetVar="ConfiguracionViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewConfiguracionTitle}" closeOnEscape="true">
+
+            <h:form id="ConfiguracionViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{configuracionController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewConfiguracionLabel_id}"/>
+                        <h:outputText value="#{configuracionController.selected.id}" title="#{myBundle.ViewConfiguracionTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewConfiguracionLabel_nombre}"/>
+                        <h:outputText value="#{configuracionController.selected.nombre}" title="#{myBundle.ViewConfiguracionTitle_nombre}"/>
+
+                        <h:outputText value="#{myBundle.ViewConfiguracionLabel_telefono}"/>
+                        <h:outputText value="#{configuracionController.selected.telefono}" title="#{myBundle.ViewConfiguracionTitle_telefono}"/>
+
+                        <h:outputText value="#{myBundle.ViewConfiguracionLabel_direccion}"/>
+                        <h:outputText value="#{configuracionController.selected.direccion}" title="#{myBundle.ViewConfiguracionTitle_direccion}"/>
+
+                        <h:outputText value="#{myBundle.ViewConfiguracionLabel_correo}"/>
+                        <h:outputText value="#{configuracionController.selected.correo}" title="#{myBundle.ViewConfiguracionTitle_correo}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('ConfiguracionViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>

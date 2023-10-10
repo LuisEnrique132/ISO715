@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AutorViewDlg" widgetVar="AutorViewDialog" modal="true" resizable="false"  appendTo="@(body)" header="#{myBundle.ViewAutorTitle}" closeOnEscape="true">
+
+            <h:form id="AutorViewForm">
+
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" columnClasses="column" rendered="#{autorController.selected != null}">
+
+                        <h:outputText value="#{myBundle.ViewAutorLabel_id}"/>
+                        <h:outputText value="#{autorController.selected.id}" title="#{myBundle.ViewAutorTitle_id}"/>
+
+                        <h:outputText value="#{myBundle.ViewAutorLabel_autor}"/>
+                        <h:outputText value="#{autorController.selected.autor}" title="#{myBundle.ViewAutorTitle_autor}"/>
+
+                        <h:outputText value="#{myBundle.ViewAutorLabel_imagen}"/>
+                        <h:outputText value="#{autorController.selected.imagen}" title="#{myBundle.ViewAutorTitle_imagen}"/>
+
+                        <h:outputText value="#{myBundle.ViewAutorLabel_estado}"/>
+                        <h:outputText value="#{autorController.selected.estado}" title="#{myBundle.ViewAutorTitle_estado}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{myBundle.Close}" onclick="PF('AutorViewDialog').hide()"/>
+                </h:panelGroup>
+
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+
+</html>
